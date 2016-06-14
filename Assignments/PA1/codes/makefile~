@@ -1,0 +1,2 @@
+build:
+	gcc -lGL -lglut source_code.c

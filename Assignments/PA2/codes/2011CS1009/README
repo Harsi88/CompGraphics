@@ -1,0 +1,18 @@
+Every functionality in code is implemented as mentioned in the assignment.
+
+Some additional features are listed below:
+1.  'l' (Small l) to enable lighting
+2.  'L' (Capital L) to disable lighting 
+    *** You may want to disabe lighting in order to see the clear distinction between x and y and z axes where they are shown in different colors***
+3. 'f' to shift to solid mode 
+4. 'e' to shift to wireframe mode
+    *** By default wireframe mode is enabled***
+    
+Initially z-axis is pointing outwards in the viewport, as a result some features might be difficult to differentiate. 
+So, I would suggest to rotate the camera first and then apply other features in order to see clear distinction between them.
+
+I haven't as such implemented 'gluLookat equivalent' but have defined three function which when used in some combinations performs
+exactly same functions as gluLookat does. I am using these functions to implement everything in my code. Please refer to source-code for 
+more detail. I hope you will consider these function as effective implementation for 'gluLookat equivalent'.
+
+THANK YOU!!!

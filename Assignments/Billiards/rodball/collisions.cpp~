@@ -1,0 +1,92 @@
+
+#include "collisions.h"
+
+void calculate_values(rod* r1, rod* r2, Vector3* v);
+
+
+void collision(disk* d,boundary* b)
+{
+	collision(d,b->right);
+	collision(d,b->left);
+	collision(d,b->upper);
+	collision(d,b->below);
+}
+
+void collision(disk* d, rod* r)
+{
+	//FILL YOUR CODE HERE//
+	
+	/* this is simpler one, you need to decide the final velocity of the disk in this case, 
+	 *the rod is permanently rotating about one of it's edge, the ball is free to move, 
+	 the code for collision of ball with walls has been written, you need to wirte code for,
+	 ball and stick collision, just update the velocity v_x, v_y of d to see the change*/
+}
+
+void collision(disk* d, wall* w)
+{
+	if(w->name == 'l')
+	{
+		double ball_left_edge_x = d->c_x - d->radius;
+		if(fabs(ball_left_edge_x - w-> v1->vector[0]) < fabs(d->v_x))
+			d->v_x = -1*d->v_x;
+	}
+	else if(w->name == 'r')
+	{
+		double ball_right_edge_x = d->c_x + d->radius;
+		if(fabs(ball_right_edge_x - w-> v1->vector[0]) < fabs(d->v_x))
+			d->v_x = -1*d->v_x;
+	}
+	else if(w->name == 'b')
+	{
+		double ball_lower_edge_y = d->c_y - d->radius;
+		if(fabs(ball_lower_edge_y - w-> v1->vector[1]) < fabs(d->v_y))
+			d->v_y = -1*d->v_y;
+	}
+	else if(w->name == 'u')
+	{
+		double ball_upper_edge_y = d->c_y + d->radius;
+		if(fabs(ball_upper_edge_y - w->v1->vector[1]) < fabs(d->v_y))
+			d->v_y = -1*d->v_y;
+	}
+}
+
+void collision(disk* d1, disk*d2)
+{
+	double d = sqrt(pow((d1->c_x - d2->c_x),2)+pow((d1->c_y - d2->c_y),2));	
+
+	double sum_radius = d1->radius+d2->radius;
+
+	double strike_vector_x = d2->c_x - d1->c_x;
+	double strike_vector_y = d2->c_y - d1->c_y;
+	double norm = sqrt(pow(strike_vector_x,2)+pow(strike_vector_y,2));
+	strike_vector_x /= norm;
+	strike_vector_y /= norm;
+
+	double v1_dot_strike = d1->v_x*strike_vector_x + d1->v_y*strike_vector_y;
+	double v1_strike_x = v1_dot_strike*strike_vector_x;
+	double v1_strike_y = v1_dot_strike*strike_vector_y;
+
+	double v1_n_x = d1->v_x - v1_strike_x;
+	double v1_n_y = d1->v_y - v1_strike_y;
+
+	double v2_dot_strike = d2->v_x*strike_vector_x + d2->v_y*strike_vector_y;
+	double v2_strike_x = v2_dot_strike*strike_vector_x;
+	double v2_strike_y = v2_dot_strike*strike_vector_y;
+
+	double v2_n_x = d2->v_x - v2_strike_x;
+	double v2_n_y = d2->v_y - v2_strike_y;
+
+	double v_rel_x = d1->v_x - d2->v_x;
+	double v_rel_y = d1->v_y - d2->v_y;
+
+	double v_rel = sqrt(pow(v_rel_x,2)+pow(v_rel_y,2));
+
+	if(fabs(d-sum_radius) < v_rel) 	
+	{
+		d1->v_x = v1_n_x+v2_strike_x;
+		d1->v_y = v1_n_y+v2_strike_y;
+
+		d2->v_x = v2_n_x+v1_strike_x;
+		d2->v_y = v1_n_y+v1_strike_y; 
+	} 
+}

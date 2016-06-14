@@ -1,0 +1,23 @@
+Brown University IFS Archive
+
+The database was compiled at Brown University 
+by Morgan McGuire and Nick Musurca.
+
+This database contains the raw geometric mesh data
+from actual 3D models downloaded from the internet.
+Many of the original files can be found at 3DCafe.com,
+polycount.com, and in the graphics3d.com IFS database.
+
+The meshes have not been "cleaned up"-- they accurately
+represent real-world 3D models and the kinds of model
+errors encountered with them.
+
+It may be freely used for non-commercial purposes.
+If using the actual meshes for a commercial purpose,
+you should contact the copyright holders of the
+original meshes in question.
+
+IFS is a simple indexed face set format.  fileformat.txt
+describes the format and the G3D library (g3d-cpp.sf.net)
+contains code for loading it.
+

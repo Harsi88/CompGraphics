@@ -1,0 +1,2 @@
+build:
+	g++ -lGL -lglut -lGLU code.cpp if.c -o viewer
